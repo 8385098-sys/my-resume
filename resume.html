@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>程思玮 - 个人简历</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Noto+Serif+SC:wght@300;400;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #111118;
+            --surface-2: #16161f;
+            --accent: #9e8640;
+            --accent-light: #c4a84e;
+            --accent-glow: rgba(158, 134, 64, 0.5);
+            --accent-dim: rgba(158, 134, 64, 0.1);
+            --text-primary: #e8e4dc;
+            --text-secondary: #a09a90;
+            --text-muted: #6b6870;
+            --text-dim: #3d3a42;
+            --border: #222228;
+            --border-light: #2e2e36;
+            --tag-bg: rgba(158, 134, 64, 0.06);
+            --tag-border: rgba(158, 134, 64, 0.18);
+            --green: #5cb87a;
+            --green-dim: rgba(92, 184, 122, 0.08);
+            --green-border: rgba(92, 184, 122, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text-primary);
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 300;
+            line-height: 1.9;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .bg-mesh {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(ellipse 600px 400px at 8% 12%, rgba(158, 134, 64, 0.04) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 500px at 92% 85%, rgba(92, 184, 122, 0.02) 0%, transparent 70%);
+        }
+
+        /* ===== LAYOUT ===== */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 52px;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            padding: 56px 0 0;
+            opacity: 0;
+            animation: fadeDown 0.8s ease forwards;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .header-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        .header-contact {
+            text-align: right;
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 2.2;
+        }
+
+        .header-contact span {
+            color: var(--text-dim);
+            margin-right: 6px;
+        }
+
+        /* ===== NAME ===== */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 40px;
+            margin-bottom: 8px;
+        }
+
+        .hero-name {
+            font-family: 'Syne', 'Noto Serif SC', sans-serif;
+            font-weight: 800;
+            font-size: clamp(52px, 8vw, 100px);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            background: linear-gradient(
+                135deg,
+                #d8d0c0 0%,
+                #c4b890 25%,
+                #9e8640 50%,
+                #c4b890 75%,
+                #d8d0c0 100%
+            );
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: nameShimmer 8s ease-in-out infinite, fadeUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+            filter: drop-shadow(0 0 24px rgba(158, 134, 64, 0.12))
+                    drop-shadow(0 0 48px rgba(158, 134, 64, 0.06));
+        }
+
+        @keyframes nameShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-target {
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+            color: var(--accent);
+            background: var(--accent-dim);
+            border: 1px solid var(--tag-border);
+            padding: 8px 18px;
+            border-radius: 4px;
+            white-space: nowrap;
+            align-self: flex-end;
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: fadeLeft 0.7s ease 0.4s forwards;
+        }
+
+        .hero-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--border-light) 40%, transparent 100%);
+            margin: 28px 0;
+            opacity: 0;
+            animation: scaleX 1s ease 0.5s forwards;
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+
+        /* ===== SKILLS BAR ===== */
+        .skills-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 56px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.6s forwards;
+        }
+
+        .skill-pill {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            padding: 6px 16px;
+            background: var(--tag-bg);
+            border: 1px solid var(--tag-border);
+            border-radius: 3px;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+            transition: all 0.35s ease;
+            cursor: default;
+        }
+
+        .skill-pill:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .skill-pill.green {
+            color: var(--green);
+            border-color: var(--green-border);
+            background: var(--green-dim);
+        }
+
+        .skill-pill.green:hover {
+            background: var(--green);
+            color: var(--bg);
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            margin-bottom: 52px;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .section-num {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 12px;
+            color: var(--accent);
+            background: var(--accent-dim);
+            border: 1px solid var(--tag-border);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-family: 'Syne', 'Noto Serif SC', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.01em;
+        }
+
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 24px;
+            bottom: 24px;
+            width: 1px;
+            background: linear-gradient(180deg, transparent 0%, var(--border-light) 10%, var(--border-light) 90%, transparent 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 20px 0 20px 26px;
+            /* 不再用 padding 变化做凸显 */
+            transition: background 0.35s ease;
+            border-radius: 4px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 8px;
+        }
+
+        /* 圆点 */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 28px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 1.5px solid var(--accent);
+            transition: all 0.35s ease;
+            z-index: 1;
+        }
+
+        /* 分隔线 */
+        .timeline-item + .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ===== 悬停凸显：只改颜色和光效，不动位置和大小 ===== */
+        .timeline-item:hover {
+            background: rgba(158, 134, 64, 0.04);
+        }
+
+        .timeline-item:hover::before {
+            background: var(--accent);
+            box-shadow: 0 0 14px var(--accent-glow);
+            transform: scale(1.4);
+        }
+
+        .timeline-item:hover .timeline-role {
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+        }
+
+        .timeline-item:hover .timeline-org {
+            color: var(--accent-light);
+            text-shadow: 0 0 16px rgba(196, 168, 78, 0.2);
+        }
+
+        .timeline-item:hover .timeline-desc {
+            color: #d5d0c8;
+        }
+
+        .timeline-item:hover .timeline-desc li::before {
+            color: var(--accent);
+            text-shadow: 0 0 6px rgba(158, 134, 64, 0.4);
+        }
+
+        .timeline-item:hover .timeline-date {
+            border-color: var(--accent);
+            color: var(--accent-light);
+            background: var(--accent-dim);
+            text-shadow: 0 0 10px rgba(158, 134, 64, 0.2);
+        }
+
+        .timeline-item:hover .timeline-tag {
+            background: var(--green);
+            color: var(--bg);
+        }
+
+        /* ===== 日期标签 ===== */
+        .timeline-top {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .timeline-date {
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            color: var(--text-dim);
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            padding: 4px 12px;
+            border-radius: 3px;
+            white-space: nowrap;
+            letter-spacing: 0.03em;
+            transition: all 0.35s ease;
+        }
+
+        .timeline-role {
+            font-family: 'Syne', 'Noto Serif SC', sans-serif;
+            font-weight: 600;
+            font-size: 17px;
+            color: var(--text-primary);
+            transition: all 0.35s ease;
+        }
+
+        .timeline-tag {
+            display: inline-block;
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            padding: 2px 9px;
+            background: var(--green-dim);
+            border: 1px solid var(--green-border);
+            border-radius: 2px;
+            color: var(--green);
+            margin-left: 6px;
+            vertical-align: middle;
+            transition: all 0.35s ease;
+        }
+
+        .timeline-org {
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+            color: var(--accent);
+            margin-bottom: 12px;
+            opacity: 0.8;
+            transition: all 0.35s ease;
+        }
+
+        .timeline-desc {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 2;
+            transition: all 0.35s ease;
+        }
+
+        .timeline-desc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-desc li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 4px;
+            transition: all 0.35s ease;
+        }
+
+        .timeline-desc li::before {
+            content: '◇';
+            position: absolute;
+            left: 0;
+            color: var(--text-dim);
+            font-size: 10px;
+            top: 4px;
+            transition: all 0.35s ease;
+        }
+
+        /* ===== AWARDS ===== */
+        .awards-list {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .awards-list::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 24px;
+            bottom: 24px;
+            width: 1px;
+            background: linear-gradient(180deg, transparent, var(--border-light), transparent);
+        }
+
+        .award-item {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px 0 16px 26px;
+            transition: background 0.35s ease;
+            border-radius: 4px;
+        }
+
+        .award-item::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 24px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 8px rgba(158, 134, 64, 0.25);
+            transition: all 0.35s ease;
+        }
+
+        .award-item + .award-item::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .award-text {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            transition: all 0.35s ease;
+        }
+
+        .award-item:hover {
+            background: rgba(158, 134, 64, 0.04);
+        }
+
+        .award-item:hover::before {
+            transform: scale(1.5);
+            box-shadow: 0 0 16px var(--accent-glow);
+        }
+
+        .award-item:hover .award-text {
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.06);
+        }
+
+        /* ===== SELF EVALUATION ===== */
+        .self-eval {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 2.2;
+            padding: 28px 32px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            border-left: 2px solid var(--accent);
+            transition: all 0.35s ease;
+        }
+
+        .self-eval:hover {
+            color: #d5d0c8;
+            border-left-color: var(--accent-light);
+            background: rgba(158, 134, 64, 0.04);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+        }
+
+        .footer-text {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-decoration: none;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: var(--accent); }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeLeft {
+            from { opacity: 0; transform: translateX(16px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes scaleX {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        /* ===== GLOW ===== */
+        .glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(158, 134, 64, 0.025) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            transition: left 0.2s ease, top 0.2s ease;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 700px) {
+            .container { padding: 0 20px; }
+            .header-top { flex-direction: column; gap: 12px; }
+            .header-contact { text-align: left; }
+            .hero { flex-direction: column; align-items: flex-start; }
+            .timeline { padding-left: 24px; }
+            .timeline-item { padding-left: 20px; }
+            .timeline-item::before { left: -21px; }
+            .timeline-top { flex-direction: column; gap: 6px; }
+            .footer { flex-direction: column; gap: 12px; }
+        }
+
+        /* ===== PRINT ===== */
+        @media print {
+            body { background: #fff; color: #1a1a1a; }
+            body::before, .bg-mesh, .glow { display: none; }
+            .section, .header, .hero-divider, .skills-bar { opacity: 1; transform: none; animation: none; }
+            .hero-name { background: none; -webkit-text-fill-color: #1a1a1a; filter: none; }
+            .section-num { color: #6b5a20; background: rgba(107,90,32,0.08); border-color: rgba(107,90,32,0.2); }
+            .skill-pill { border-color: #ccc; color: #333; background: #f5f5f5; }
+            .skill-pill.green { border-color: #ccc; color: #2d7a4f; background: #f0f8f0; }
+            .timeline::before, .awards-list::before { background: #ddd; }
+            .timeline-item::before { border-color: #6b5a20; background: #fff; }
+            .timeline-date { background: #f5f5f5; border-color: #ddd; color: #555; }
+            .self-eval { background: #f9f9f9; border-color: #ddd; border-left-color: #6b5a20; }
+            .award-item::before { background: #6b5a20; box-shadow: none; }
+            a { color: #1a1a1a; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-mesh"></div>
+    <div class="glow" id="glow"></div>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-top">
+                <span class="header-label">RESUME — 2026</span>
+                <div class="header-contact">
+                    <div><span>TEL</span>(+86) 138-9548-5587</div>
+                    <div><span>EMAIL</span>8385098@qq.com</div>
+                </div>
+            </div>
+
+            <div class="hero">
+                <h1 class="hero-name">程思玮</h1>
+                <div class="hero-target">动力工程相关技术岗位</div>
+            </div>
+
+            <div class="hero-divider"></div>
+
+            <div class="skills-bar">
+                <span class="skill-pill green">英语六级</span>
+                <span class="skill-pill">CATIA</span>
+                <span class="skill-pill">SOLIDWORKS</span>
+                <span class="skill-pill">CHEMKIN</span>
+                <span class="skill-pill">AEDsys</span>
+                <span class="skill-pill">Python</span>
+                <span class="skill-pill">Office</span>
+            </div>
+        </header>
+
+        <!-- 教育经历 -->
+        <section class="section" data-reveal>
+            <div class="section-header">
+                <div class="section-num">01</div>
+                <h2 class="section-title">教育经历</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-top">
+                        <span class="timeline-date">2021.09 — 2025.06</span>
+                        <span class="timeline-role">飞行器动力工程 · 本科</span>
+                    </div>
+                    <div class="timeline-org">厦门大学 · 航空航天学院</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>材料力学试验 4.0/4.0</li>
+                            <li>航空模型设计实践 4.0/4.0</li>
+                            <li>流体力学实验 4.0/4.0</li>
+                            <li>CATIA应用 4.0/4.0</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 实习/实践经历 -->
+        <section class="section" data-reveal>
+            <div class="section-header">
+                <div class="section-num">02</div>
+                <h2 class="section-title">实习 / 实践经历</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-top">
+                        <span class="timeline-date">2025.02 — 2025.03</span>
+                        <span class="timeline-role">工作实习</span>
+                        <span class="timeline-tag">实习</span>
+                    </div>
+                    <div class="timeline-org">西部机场集团宁夏机场有限公司中卫分公司</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>从事塔台调度、跑道维护、值机配载、安检协同、发动机检查及相关机务工作</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-top">
+                        <span class="timeline-date">2024.06 — 2024.07</span>
+                        <span class="timeline-role">生产实习</span>
+                        <span class="timeline-tag">实习</span>
+                    </div>
+                    <div class="timeline-org">襄阳航泰动力机器厂</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>开展涡扇发动机分装、高压机匣与附件机匣、发动机尾喷及加力附件分解、总装与试车实训以及涡桨等发动机定损检查和维修</li>
+                            <li>担任生产实习学生负责人，负责校企沟通联络、起草参访实习计划、专业学生实习生活服务与保障</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-top">
+                        <span class="timeline-date">2024.01 — 2024.02</span>
+                        <span class="timeline-role">学少部干事</span>
+                        <span class="timeline-tag">实践</span>
+                    </div>
+                    <div class="timeline-org">共青团银川市委员会</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>协助策划银川市高校优秀学子"银川青春行"观摩实践活动，组织100名高校学子参访蒙牛特仑苏（银川）乳业有限公司、宁夏志辉源石酒庄、晶盛机电宁夏新材料产业园以及沃福百瑞宁夏枸杞馆</li>
+                            <li>协助组织"我在贺兰山下写青春"银川青年友好卡宣传活动，独立拍摄剪辑3条宣传视频，策划青年友好卡宣传推文获银川晚报转发，总阅读量超1万人次</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 学生干部经历 -->
+        <section class="section" data-reveal>
+            <div class="section-header">
+                <div class="section-num">03</div>
+                <h2 class="section-title">学生干部经历</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-top">
+                        <span class="timeline-date">2022.09 — 2025.06</span>
+                        <span class="timeline-role">团支书</span>
+                    </div>
+                    <div class="timeline-org">厦门大学航空航天学院动力工程系一班</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>主持团支部日常工作，组织策划20余次班会、经验交流会及教授座谈会等</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-top">
+                        <span class="timeline-date">2022.09 — 2023.09</span>
+                        <span class="timeline-role">副书记</span>
+                    </div>
+                    <div class="timeline-org">厦门大学航空航天学院航空系分团总支</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>负责团组织关系转接、基层团组织建设、困难学生认定和奖助学金评审推荐</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-top">
+                        <span class="timeline-date">2022.09 — 2023.09</span>
+                        <span class="timeline-role">部长、负责人</span>
+                    </div>
+                    <div class="timeline-org">厦门大学航空航天学院学生会宣传部 · 青年媒体中心</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>运营厦门大学航空航天学院官方微信公众号和院学生会官微"寰宇天下"，期间关注量增加至13000人，创作、审核、发布推文296条，其中原创内容35篇</li>
+                            <li>成功策划厦门大学翔安校区首届网络文化节，参与评审参赛作品50余份</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 项目经历 -->
+        <section class="section" data-reveal>
+            <div class="section-header">
+                <div class="section-num">04</div>
+                <h2 class="section-title">项目经历</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-top">
+                        <span class="timeline-date">2022.09 — 2022.11</span>
+                        <span class="timeline-role">项目负责人</span>
+                    </div>
+                    <div class="timeline-org">具有方向控制功能的自行走势能驱动车</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>带领项目成员自主设计、制作势能驱动车，实现在指定运行场地上自主运行，所有动作所需能量均由重力势能转换而成</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-top">
+                        <span class="timeline-date">2022.03 — 2023.08</span>
+                        <span class="timeline-role">项目第一成员</span>
+                    </div>
+                    <div class="timeline-org">"天行" 陆空双域可换形涵道无人机</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>采用横列式双旋翼布局作为飞行模式，将涵道作为陆地模式的创新滚动机构，具有陆地模式和飞行模式，制作原型机验证可行性</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-top">
+                        <span class="timeline-date">2024.03 — 2025.06</span>
+                        <span class="timeline-role">项目第一成员</span>
+                    </div>
+                    <div class="timeline-org">航行体边界层流动分离域膜态沸腾气膜减阻性能及机理</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>开展流型匹配航行器典型外形边界层流动精细化数值仿真，突破边界层流动分离域膜态沸腾气膜多相流数值模拟技术，解析最优减阻性能气膜参数</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 荣誉奖励 -->
+        <section class="section" data-reveal>
+            <div class="section-header">
+                <div class="section-num">05</div>
+                <h2 class="section-title">荣誉奖励</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="awards-list">
+                <div class="award-item">
+                    <span class="award-text">荣获2022年福建省大学生工程实践与创新能力大赛校级二等奖</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-text">荣获第九届中国研究生未来飞行器创新大赛二等奖</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 自我评价 -->
+        <section class="section" data-reveal>
+            <div class="section-header">
+                <div class="section-num">06</div>
+                <h2 class="section-title">自我评价</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="self-eval">
+                性格开朗、态度端正，富有责任心和敬业精神，组织策划、团队协调和动手能力强，具有较强的抗压、学习和创新能力。
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <span class="footer-text">© 2026 程思玮 — ALL RIGHTS RESERVED</span>
+            <div class="footer-links">
+                <a href="mailto:8385098@qq.com">EMAIL</a>
+                <a href="tel:+8613895485587">PHONE</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        const reveals = document.querySelectorAll('[data-reveal]');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.06 });
+        reveals.forEach((el, i) => {
+            el.style.transitionDelay = (i * 0.08) + 's';
+            observer.observe(el);
+        });
+
+        const glow = document.getElementById('glow');
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+    </script>
+</body>
+</html>
