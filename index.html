@@ -58,30 +58,27 @@
                 radial-gradient(ellipse 400px 500px at 92% 85%, rgba(92, 184, 122, 0.02) 0%, transparent 70%);
         }
 
-        /* ===== LAYOUT ===== */
         .container {
             max-width: 960px;
             margin: 0 auto;
-            padding: 0 52px;
+            padding: 0 24px;
         }
 
         /* ===== HEADER ===== */
         .header {
-            padding: 56px 0 0;
-            opacity: 0;
-            animation: fadeDown 0.8s ease forwards;
+            padding: 40px 0 0;
         }
 
         .header-top {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
         }
 
         .header-label {
             font-family: 'DM Mono', monospace;
-            font-size: 11px;
+            font-size: 10px;
             letter-spacing: 0.3em;
             text-transform: uppercase;
             color: var(--text-dim);
@@ -90,47 +87,37 @@
         .header-contact {
             text-align: right;
             font-family: 'DM Mono', monospace;
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-muted);
             line-height: 2.2;
         }
 
         .header-contact span {
             color: var(--text-dim);
-            margin-right: 6px;
+            margin-right: 4px;
         }
 
-        /* ===== NAME ===== */
         .hero {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            gap: 40px;
+            gap: 20px;
             margin-bottom: 8px;
         }
 
         .hero-name {
             font-family: 'Syne', 'Noto Serif SC', sans-serif;
             font-weight: 800;
-            font-size: clamp(52px, 8vw, 100px);
+            font-size: clamp(44px, 10vw, 96px);
             line-height: 1;
             letter-spacing: -0.02em;
-            background: linear-gradient(
-                135deg,
-                #d8d0c0 0%,
-                #c4b890 25%,
-                #9e8640 50%,
-                #c4b890 75%,
-                #d8d0c0 100%
-            );
+            background: linear-gradient(135deg, #d8d0c0 0%, #c4b890 25%, #9e8640 50%, #c4b890 75%, #d8d0c0 100%);
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: nameShimmer 8s ease-in-out infinite, fadeUp 0.8s ease 0.2s forwards;
-            opacity: 0;
-            filter: drop-shadow(0 0 24px rgba(158, 134, 64, 0.12))
-                    drop-shadow(0 0 48px rgba(158, 134, 64, 0.06));
+            animation: nameShimmer 8s ease-in-out infinite;
+            filter: drop-shadow(0 0 24px rgba(158, 134, 64, 0.12)) drop-shadow(0 0 48px rgba(158, 134, 64, 0.06));
         }
 
         @keyframes nameShimmer {
@@ -140,38 +127,30 @@
 
         .hero-target {
             font-family: 'DM Mono', monospace;
-            font-size: 14px;
+            font-size: 13px;
             color: var(--accent);
             background: var(--accent-dim);
             border: 1px solid var(--tag-border);
-            padding: 8px 18px;
+            padding: 8px 16px;
             border-radius: 4px;
             white-space: nowrap;
             align-self: flex-end;
             margin-bottom: 8px;
-            opacity: 0;
-            animation: fadeLeft 0.7s ease 0.4s forwards;
         }
 
         .hero-divider {
             width: 100%;
             height: 1px;
             background: linear-gradient(90deg, var(--accent) 0%, var(--border-light) 40%, transparent 100%);
-            margin: 28px 0;
-            opacity: 0;
-            animation: scaleX 1s ease 0.5s forwards;
-            transform-origin: left;
-            transform: scaleX(0);
+            margin: 24px 0;
         }
 
-        /* ===== SKILLS BAR ===== */
+        /* ===== SKILLS ===== */
         .skills-bar {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 56px;
-            opacity: 0;
-            animation: fadeUp 0.7s ease 0.6s forwards;
+            margin-bottom: 48px;
         }
 
         .skill-pill {
@@ -205,22 +184,14 @@
 
         /* ===== SECTIONS ===== */
         .section {
-            margin-bottom: 52px;
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
+            margin-bottom: 48px;
         }
 
         .section-header {
             display: flex;
             align-items: center;
             gap: 14px;
-            margin-bottom: 24px;
+            margin-bottom: 22px;
         }
 
         .section-num {
@@ -242,8 +213,7 @@
         .section-title {
             font-family: 'Syne', 'Noto Serif SC', sans-serif;
             font-weight: 700;
-            font-size: 24px;
-            letter-spacing: -0.01em;
+            font-size: 22px;
         }
 
         .section-line {
@@ -255,7 +225,7 @@
         /* ===== TIMELINE ===== */
         .timeline {
             position: relative;
-            padding-left: 30px;
+            padding-left: 28px;
         }
 
         .timeline::before {
@@ -270,22 +240,18 @@
 
         .timeline-item {
             position: relative;
-            padding: 20px 0 20px 26px;
-            /* 不再用 padding 变化做凸显 */
+            padding: 18px 0 18px 24px;
             transition: background 0.35s ease;
             border-radius: 4px;
         }
 
-        .timeline-item:last-child {
-            padding-bottom: 8px;
-        }
+        .timeline-item:last-child { padding-bottom: 8px; }
 
-        /* 圆点 */
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -24px;
-            top: 28px;
+            left: -22px;
+            top: 26px;
             width: 7px;
             height: 7px;
             border-radius: 50%;
@@ -295,7 +261,6 @@
             z-index: 1;
         }
 
-        /* 分隔线 */
         .timeline-item + .timeline-item::after {
             content: '';
             position: absolute;
@@ -306,7 +271,7 @@
             background: var(--border);
         }
 
-        /* ===== 悬停凸显：只改颜色和光效，不动位置和大小 ===== */
+        /* Hover effects */
         .timeline-item:hover {
             background: rgba(158, 134, 64, 0.04);
         }
@@ -317,42 +282,17 @@
             transform: scale(1.4);
         }
 
-        .timeline-item:hover .timeline-role {
-            color: #fff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
-        }
+        .timeline-item:hover .timeline-role { color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.08); }
+        .timeline-item:hover .timeline-org { color: var(--accent-light); }
+        .timeline-item:hover .timeline-desc { color: #d5d0c8; }
+        .timeline-item:hover .timeline-desc li::before { color: var(--accent); }
+        .timeline-item:hover .timeline-date { border-color: var(--accent); color: var(--accent-light); background: var(--accent-dim); }
+        .timeline-item:hover .timeline-tag { background: var(--green); color: var(--bg); }
 
-        .timeline-item:hover .timeline-org {
-            color: var(--accent-light);
-            text-shadow: 0 0 16px rgba(196, 168, 78, 0.2);
-        }
-
-        .timeline-item:hover .timeline-desc {
-            color: #d5d0c8;
-        }
-
-        .timeline-item:hover .timeline-desc li::before {
-            color: var(--accent);
-            text-shadow: 0 0 6px rgba(158, 134, 64, 0.4);
-        }
-
-        .timeline-item:hover .timeline-date {
-            border-color: var(--accent);
-            color: var(--accent-light);
-            background: var(--accent-dim);
-            text-shadow: 0 0 10px rgba(158, 134, 64, 0.2);
-        }
-
-        .timeline-item:hover .timeline-tag {
-            background: var(--green);
-            color: var(--bg);
-        }
-
-        /* ===== 日期标签 ===== */
         .timeline-top {
             display: flex;
             align-items: baseline;
-            gap: 14px;
+            gap: 12px;
             margin-bottom: 8px;
             flex-wrap: wrap;
         }
@@ -408,10 +348,7 @@
             transition: all 0.35s ease;
         }
 
-        .timeline-desc ul {
-            list-style: none;
-            padding: 0;
-        }
+        .timeline-desc ul { list-style: none; padding: 0; }
 
         .timeline-desc li {
             position: relative;
@@ -433,7 +370,7 @@
         /* ===== AWARDS ===== */
         .awards-list {
             position: relative;
-            padding-left: 30px;
+            padding-left: 28px;
         }
 
         .awards-list::before {
@@ -451,7 +388,7 @@
             display: flex;
             align-items: flex-start;
             gap: 14px;
-            padding: 16px 0 16px 26px;
+            padding: 16px 0 16px 24px;
             transition: background 0.35s ease;
             border-radius: 4px;
         }
@@ -459,7 +396,7 @@
         .award-item::before {
             content: '';
             position: absolute;
-            left: -24px;
+            left: -22px;
             top: 24px;
             width: 7px;
             height: 7px;
@@ -486,19 +423,9 @@
             transition: all 0.35s ease;
         }
 
-        .award-item:hover {
-            background: rgba(158, 134, 64, 0.04);
-        }
-
-        .award-item:hover::before {
-            transform: scale(1.5);
-            box-shadow: 0 0 16px var(--accent-glow);
-        }
-
-        .award-item:hover .award-text {
-            color: #fff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.06);
-        }
+        .award-item:hover { background: rgba(158, 134, 64, 0.04); }
+        .award-item:hover::before { transform: scale(1.5); box-shadow: 0 0 16px var(--accent-glow); }
+        .award-item:hover .award-text { color: #fff; }
 
         /* ===== SELF EVALUATION ===== */
         .self-eval {
@@ -521,7 +448,7 @@
 
         /* ===== FOOTER ===== */
         .footer {
-            padding: 40px 0;
+            padding: 36px 0;
             border-top: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
@@ -552,58 +479,29 @@
 
         .footer-links a:hover { color: var(--accent); }
 
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeDown {
-            from { opacity: 0; transform: translateY(-16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeLeft {
-            from { opacity: 0; transform: translateX(16px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        @keyframes scaleX {
-            from { transform: scaleX(0); }
-            to { transform: scaleX(1); }
-        }
-
-        /* ===== GLOW ===== */
-        .glow {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(158, 134, 64, 0.025) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-            transform: translate(-50%, -50%);
-            transition: left 0.2s ease, top 0.2s ease;
-        }
-
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 700px) {
-            .container { padding: 0 20px; }
+        @media (min-width: 768px) {
+            .container { padding: 0 52px; }
+        }
+
+        @media (max-width: 500px) {
             .header-top { flex-direction: column; gap: 12px; }
             .header-contact { text-align: left; }
             .hero { flex-direction: column; align-items: flex-start; }
             .timeline { padding-left: 24px; }
             .timeline-item { padding-left: 20px; }
-            .timeline-item::before { left: -21px; }
+            .timeline-item::before { left: -20px; }
             .timeline-top { flex-direction: column; gap: 6px; }
             .footer { flex-direction: column; gap: 12px; }
+            .self-eval { padding: 20px 20px; font-size: 16px; }
+            .timeline-desc { font-size: 15px; }
+            .award-text { font-size: 16px; }
         }
 
         /* ===== PRINT ===== */
         @media print {
             body { background: #fff; color: #1a1a1a; }
-            body::before, .bg-mesh, .glow { display: none; }
-            .section, .header, .hero-divider, .skills-bar { opacity: 1; transform: none; animation: none; }
+            body::before, .bg-mesh { display: none; }
             .hero-name { background: none; -webkit-text-fill-color: #1a1a1a; filter: none; }
             .section-num { color: #6b5a20; background: rgba(107,90,32,0.08); border-color: rgba(107,90,32,0.2); }
             .skill-pill { border-color: #ccc; color: #333; background: #f5f5f5; }
@@ -613,17 +511,14 @@
             .timeline-date { background: #f5f5f5; border-color: #ddd; color: #555; }
             .self-eval { background: #f9f9f9; border-color: #ddd; border-left-color: #6b5a20; }
             .award-item::before { background: #6b5a20; box-shadow: none; }
-            a { color: #1a1a1a; }
         }
     </style>
 </head>
 <body>
     <div class="bg-mesh"></div>
-    <div class="glow" id="glow"></div>
 
     <div class="container">
 
-        <!-- HEADER -->
         <header class="header">
             <div class="header-top">
                 <span class="header-label">RESUME — 2026</span>
@@ -652,7 +547,7 @@
         </header>
 
         <!-- 教育经历 -->
-        <section class="section" data-reveal>
+        <section class="section">
             <div class="section-header">
                 <div class="section-num">01</div>
                 <h2 class="section-title">教育经历</h2>
@@ -678,7 +573,7 @@
         </section>
 
         <!-- 实习/实践经历 -->
-        <section class="section" data-reveal>
+        <section class="section">
             <div class="section-header">
                 <div class="section-num">02</div>
                 <h2 class="section-title">实习 / 实践经历</h2>
@@ -732,7 +627,7 @@
         </section>
 
         <!-- 学生干部经历 -->
-        <section class="section" data-reveal>
+        <section class="section">
             <div class="section-header">
                 <div class="section-num">03</div>
                 <h2 class="section-title">学生干部经历</h2>
@@ -782,7 +677,7 @@
         </section>
 
         <!-- 项目经历 -->
-        <section class="section" data-reveal>
+        <section class="section">
             <div class="section-header">
                 <div class="section-num">04</div>
                 <h2 class="section-title">项目经历</h2>
@@ -831,7 +726,7 @@
         </section>
 
         <!-- 荣誉奖励 -->
-        <section class="section" data-reveal>
+        <section class="section">
             <div class="section-header">
                 <div class="section-num">05</div>
                 <h2 class="section-title">荣誉奖励</h2>
@@ -848,7 +743,7 @@
         </section>
 
         <!-- 自我评价 -->
-        <section class="section" data-reveal>
+        <section class="section">
             <div class="section-header">
                 <div class="section-num">06</div>
                 <h2 class="section-title">自我评价</h2>
@@ -859,7 +754,6 @@
             </div>
         </section>
 
-        <!-- FOOTER -->
         <footer class="footer">
             <span class="footer-text">© 2026 程思玮 — ALL RIGHTS RESERVED</span>
             <div class="footer-links">
@@ -869,26 +763,5 @@
         </footer>
 
     </div>
-
-    <script>
-        const reveals = document.querySelectorAll('[data-reveal]');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.06 });
-        reveals.forEach((el, i) => {
-            el.style.transitionDelay = (i * 0.08) + 's';
-            observer.observe(el);
-        });
-
-        const glow = document.getElementById('glow');
-        document.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
-    </script>
 </body>
 </html>
